@@ -30,7 +30,7 @@ const RankingGrid = ({ items, imgArr, drag, allowDrop, drop }) => {
         var rankNum = 0
         var currTier = []
         var label = ""
-        const numCells = 5
+        const numCells = 6
 
         for (var i = 1; i <= numCells; i++) {
             rankNum = (i === 1) ? 0 : (numCells * (rowNum - 1)) + i - rowNum
