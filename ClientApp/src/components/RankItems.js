@@ -9,24 +9,25 @@ const RankItems = () => {
     const dataType = 0;
 
     function drag(ev) {
-        ev.dataTransfer.setData("text", ev.target.id)
+        ev.dataTransfer.setData("text", ev.target.id);
     }
 
     function allowDrop(ev) {
-        ev.preventDefault()
+        ev.preventDefault();
     }
 
     function drop(ev) {
+
         ev.preventDefault();
-        const targetElm = ev.target
+        const targetElm = ev.target;
         if (targetElm.nodeName === "IMG") {
             return false;
         }
         if (targetElm.childNodes.length === 0) {
-            var data = parseInt(ev.dataTransfer.getData("text").substring(5))
-            const transformedRow = items.map((item) => (item.id === parseInt(data)) ?
-                { ...item, rank: parseInt(targetElm.id.substring(5)) } : {...item, rank: item-rank})
-            setItems(transformedRow)
+            var data = parseInt(ev.dataTransfer.getData("text").substring(5));
+            const transformedCollection = items.map((item) => (item.id === parseInt(data)) ?
+            { ...item, rank: parseInt(targetElm.id.substring(5)) } : { ...item, rank: item.rank });
+            setItems(transformedCollection);
         }
     }
 
@@ -52,6 +53,7 @@ const RankItems = () => {
                         <img id={`item-${item.id}`} src={MovieImgArr.find(i => i.id === item.id)?.image}
                             style={{ cursor: "pointer" }} draggable="true" onDragStart={drag}
                         />
+                        <h1>{item.rank}</h1>
                     </div>
                     ) : <div>Loading....</div>
             }
