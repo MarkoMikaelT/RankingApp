@@ -18,7 +18,7 @@ namespace RankingApp.Controllers
             new ItemModel{Id = 6, Title = "", ImageId = 6, Rank = 0, ItemType = 0},
             new ItemModel{Id = 7, Title = "", ImageId = 7, Rank = 0, ItemType = 0},
             new ItemModel{Id = 8, Title = "", ImageId = 8, Rank = 0, ItemType = 0},
-            new ItemModel{Id = 9, Title = "Shrek2", ImageId = 9, Rank = 5, ItemType = 0},
+            new ItemModel{Id = 9, Title = "Shrek2", ImageId = 9, Rank = 1, ItemType = 0},
         };
 
         [HttpGet("{itemtype:int}")]
