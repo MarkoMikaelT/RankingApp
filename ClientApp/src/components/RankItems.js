@@ -8,6 +8,12 @@ const RankItems = ({ items, setItems, dataType, imgArr, localStorageKey }) => {
     //const [items, setItems] = useState([]);
     //const dataType = 0;
 
+    const [reload, setReload] = useState(false)
+
+    function Reload() {
+        setReload(true)
+    }
+
     function drag(ev) {
         ev.dataTransfer.setData("text", ev.target.id);
     }
@@ -32,6 +38,12 @@ const RankItems = ({ items, setItems, dataType, imgArr, localStorageKey }) => {
     }
 
     useEffect(() => {
+        if (items == null) {
+            getDataAPI()
+        }
+    }, [dataType])
+
+    function getDataAPI() {
         fetch(`item/${dataType}`)
             .then((results) => {
                 //console.log(results.json());
@@ -40,19 +52,27 @@ const RankItems = ({ items, setItems, dataType, imgArr, localStorageKey }) => {
             .then(data => {
                 setItems(data);
             })
-    }, [dataType])
+    }
 
     useEffect(() => {
         if (items != null) {
             localStorage.setItem(localStorageKey, JSON.stringify(items))
         }
+        setReload(false)
     }, [items])
+
+    useEffect(() => {
+        if (reload == true) {
+            getDataAPI()
+        }
+    },[reload])
 
     return (
         (items != null) ?
         <main>
             <RankingGrid items={items} imgArr={imgArr} drag={drag} allowDrop={allowDrop} drop={drop} />
-            <ItemCollection items={items} drag={drag} imgArr={imgArr} />
+                <ItemCollection items={items} drag={drag} imgArr={imgArr} />
+                <button onClick={Reload}>Reload</button>
         </main>
         : <main>Loading....</main>
     )
