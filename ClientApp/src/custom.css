@@ -13,7 +13,16 @@ code {
   border-color: #1861ac;
 }
 
-main{
+body {
+    background: linear-gradient(to right, white, rgb(254, 200, 104));
+    background-attachment: fixed;
+}
+
+header {
+
+}
+
+main {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -40,14 +49,16 @@ main{
     margin-bottom: 10px;
 }
 
-.rank-row{
+.rank-row {
     height: 100px;
     display: flex;
-    align-items:center;
+    align-items: center;
     justify-content: space-evenly;
     justify-self: center;
     margin-top: 10px;
     margin-bottom: 10px;
+    border-radius: 10px;
+    animation-name: fromLeftToPosition;
 }
 
 h4{
@@ -65,19 +76,84 @@ h4{
     height: 100%;
 }
 
-
-.top-tier{
-    background-color: orange;
+.top-tier {
+    background: linear-gradient(to left, rgba(255,0,0,0), orange);
+    animation-duration: 2s;
 }
 .neartop-tier {
-    background-color: yellow;
+    background: linear-gradient(to left, rgba(255,0,0,0), yellow);
+    animation-duration: 3s;
 }
 .middle-tier {
-    background-color: yellowgreen;
+    background: linear-gradient(to left, rgba(255,0,0,0), yellowgreen);
+    animation-duration: 4s;
 }
 .bottom-tier {
-    background-color: red;
+    background: linear-gradient(to left, rgba(255,0,0,0), red);
+    animation-duration: 5s;
 }
 .worst-tier {
-    background-color: saddlebrown;
+    background: linear-gradient(to left, rgba(255,0,0,0), saddlebrown);
+    animation-duration: 6s;
 }
+
+.reloadbtn {
+    font-family: 'Agency FB';
+    font-size: x-large;
+    width: fit-content;
+    height: fit-content;
+    margin: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+    background: white;
+    border-style: none;
+    border-radius: 10px;
+}
+
+    .reloadbtn:hover {
+        animation-name: btnHover;
+        animation-duration: 1s;
+        background-color: rgb(171, 194, 112);
+    }
+    .reloadbtn:active {
+        box-shadow: 0px 0px 5px;
+    }
+
+
+img:hover {
+    animation-name: boxShadow;
+    animation-duration: 1s;
+    box-shadow: 5px 5px;
+}
+
+/*KEYFRAMES*/
+@keyframes btnHover {
+    0% {
+        background-color: white;
+    }
+
+    100% {
+        background-color: rgb(171, 194, 112);
+    }
+}
+
+@keyframes boxShadow{
+    0% {
+        box-shadow: 0px 0px;
+    }
+
+    100% {
+        box-shadow: 5px 5px;
+    }
+}
+
+@keyframes fromLeftToPosition {
+    from {
+        transform: translateX(calc(100vw - 100%));
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+ /*KEYFRAMES*/
